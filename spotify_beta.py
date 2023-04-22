@@ -91,7 +91,7 @@ if len(list) > db_count:
     user_toots = api.account_statuses(user_dict['id'], limit=1)
 
     # リプライの形式で追加するためにDBに保存
-    insert_text = "INSERT INTO music VALUES(" + str(user_toots[0]['id']) + ", '" + track_name + "', '" + artist_name + "', '" + str(today) + "')"
+    insert_text = "INSERT INTO music VALUES(" + str(user_toots[0]['id']) + ", '" + track_name + "', '" + artists_name + "', '" + str(today) + "')"
     cur.execute(insert_text)
     conn.commit()
     print('successfully tooted')
