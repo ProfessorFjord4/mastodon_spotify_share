@@ -68,11 +68,19 @@ if len(list) > db_count:
       
     #投稿する曲のデータ
     track_name = latest_track['name']
-    artist_name = latest_track['album']['artists'][0]['name']
     track_url = latest_track['external_urls']['spotify']
     
+    artists_name = ''
+    bool_first = True
+    for item in latest_track['artists']:
+      if bool_first:
+        artists_name += item['name']
+        bool_first = False
+      else:
+        artists_name += ',' + item['name']
+    
     # トゥート文
-    toot_text = month + '/' + day + '\n' + track_name + ' - ' + artist_name + '\n' + track_url
+    toot_text = month + '/' + day + '\n' + track_name + ' - ' + artists_name + '\n' + track_url
 
     # リプライの形式で追加
     latest_data = api.status(db_latest_song[0])
