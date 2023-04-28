@@ -4,8 +4,8 @@ from spotipy.oauth2 import SpotifyClientCredentials
 import datetime
 import sqlite3
 
-# apidata.txtにapiデータをテキストファイルとして保存している前提です
-f = open('apidata.txt', 'r')
+# sp_apidata.txtにapiデータをテキストファイルとして保存している前提です
+f = open('sp_apidata.txt', 'r')
 
 api_datalist = f.readlines()
 
@@ -46,8 +46,6 @@ cur = conn.cursor()
 
 #プレイリストからデータを収集
 playlist_data = spotify.user_playlist(user, playlist_id)
-
-#プレイリストの中で、DBに無い、先頭の曲を取ってくる
 list = playlist_data['tracks']['items']
 
 # dbから最新の曲のidを取得

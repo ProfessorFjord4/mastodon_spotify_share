@@ -233,11 +233,11 @@ pip-selfcheck.json
 
 
 # testfile
-apidata.txt
+sp_apidata.txt
+yt_apidata.txt
 db_insert.py
 main.py
-maincopy.py
 sp_test.py
-spotify_playlist.py
-spotify.py
+yt_test.py
+youtube_test.py
 Spotify_Playlist_Track_Toot_Automation.app
