@@ -61,11 +61,11 @@ dbname = 'mastodon.db'
 conn = sqlite3.connect(dbname)
 cur = conn.cursor()
 
-# dbから最新の曲のidを取得
+# dbから最新の動画のidを取得
 cur.execute("select count(*) from youtube")
 db_count = cur.fetchone()[0] - 1
 
-# 新しい曲が追加されたとき
+# 新しい動画が追加されたとき
 if len(yt_video_ids) > db_count:
     # dbから最新の曲のidを取得
     cur.execute("select * from youtube order by id desc limit 1")
@@ -73,9 +73,9 @@ if len(yt_video_ids) > db_count:
 
     # 現在投稿されているリストの最も下の動画を取得
     for i in reversed(range(len(yt_video_ids))):
-      if(yt_video_ids[i] == db_latest_video[i]):
-        latest_video_id = yt_video_ids[i+1]
-        break
+        if(yt_video_ids[i] == db_latest_video[1]):
+            latest_video_id = yt_video_ids[i+1]
+            break
     
     latest_video_data = getVideoData(latest_video_id)['items'][0]
     #投稿する動画のデータ
