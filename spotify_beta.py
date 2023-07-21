@@ -44,9 +44,11 @@ dbname = 'mastodon.db'
 conn = sqlite3.connect(dbname)
 cur = conn.cursor()
 
-#プレイリストからデータを収集
-playlist_data = spotify.user_playlist(user, playlist_id)
-list = playlist_data['tracks']['items']
+playlist_data = spotify.user_playlist_tracks(user, playlist_id)
+list = playlist_data['items']
+while playlist_data['next']:
+    playlist_data = spotify.next(playlist_data)
+    list.extend(playlist_data['items'])
 
 # dbから最新の曲のidを取得
 cur.execute("select count(*) from music")
